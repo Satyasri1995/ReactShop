@@ -1,0 +1,23 @@
+commit 82131a70df17e7b954645efd46e10f84788cea44
+Author: Dvs <satyasri.125110044@gmail.com>
+Date:   Wed Mar 16 19:42:02 2022 +0530
+
+    UI improvements
+
+commit 64ce51e3b76d0956a80e5a774c5346f690f8a078
+Author: Dvs <satyasri.125110044@gmail.com>
+Date:   Wed Mar 16 19:34:34 2022 +0530
+
+    UI completed
+
+commit 057e25cf446689305bea2007f890e00b58257737
+Author: Dvs <satyasri.125110044@gmail.com>
+Date:   Wed Mar 16 16:20:28 2022 +0530
+
+    RectShop Project Setup
+
+commit dc649b51df749450a77bdaf16e2b46e8a906d425
+Author: Dvs <satyasri.125110044@gmail.com>
+Date:   Wed Mar 16 09:59:26 2022 +0530
+
+    Initialize project using Create React App

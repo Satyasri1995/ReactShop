@@ -18,10 +18,10 @@ const StyledInputNumber = styled(InputNumber)`
 const CartItem = (props) =>{
     return <Fragment>
         <div className="p-d-flex p-flex-row p-card-content p-m-2  p-card" style={{height:"14rem"}}>
-            <img alt={props.item.name} width="300"  src={props.item.url}  />
+            <img alt={props.item.product.name} width="300"  src={props.item.product.url}  />
             <div className="p-d-flex p-flex-column p-jc-between p-m-1" style={{flex:1,height:"100%",fontWeight:"500"}}>
-                <Title>{props.item.name}</Title>
-                <span>Price : {`$${props.item.price}`}</span>
+                <Title>{props.item.product.name}</Title>
+                <span>Price : {`$${props.item.product.price}`}</span>
                 <div className="p-d-flex p-flex-row p-ai-center">
                     <span>Quantity : </span>&nbsp;
                     <StyledInputNumber 
@@ -35,8 +35,8 @@ const CartItem = (props) =>{
                 </div>
                 <span>
                     Total Price : {`${props.item.quantity} 
-                    x $${props.item.price} = 
-                    $${props.item.quantity*props.item.price} `}
+                    x $${props.item.product.price} = 
+                    $${props.item.quantity*props.item.product.price} `}
                 </span>
                 <div className="p-d-flex p-flex-row p-jc-between p-mb-3">
                     <Button label="Place Order" className="p-button-text p-button-sm" />
