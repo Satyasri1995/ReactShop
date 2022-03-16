@@ -17,7 +17,7 @@ const Title = styled(NavLink)`
   cursor:pointer;
   text-decoration: none;
   font-size:1.5rem;
-  font-style:bold
+  font-weight:500
 `;
 const StyledNavLink = styled(NavLink)`
   padding: 5px 10px;
@@ -25,6 +25,7 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   margin: 0rem 2rem;
   color:white;
+  font-weight:500;
   &:hover,
   &.active {
     background: white;
