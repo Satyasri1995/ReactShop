@@ -1,7 +1,9 @@
 
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Product from "../widgets/Product";
+import { useEffect } from "react";
+
 
 let ProductContainer = styled.div`
     margin:2rem;
@@ -13,7 +15,18 @@ let ProductContainer = styled.div`
 
 const Products = (props)=>{
 
-    const products = useSelector(state=>state.product)
+    
+    const products = useSelector(state=>state.product);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+       // dispatch(fetchProducts());
+        console.log("fetching products")
+    },[dispatch])
+
+    useEffect(()=>{
+        console.log("products changed")
+    },[products,dispatch])
 
     return <ProductContainer>
         {

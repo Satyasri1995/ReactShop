@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import styled from "styled-components"
 import { Card } from 'primereact/card';
-import LoginForm from "../widgets/LoginForm";
+import SignUpForm from "../widgets/SignUpForm";
 import { NavLink } from "react-router-dom";
 
 const LoginContainer = styled.div`
@@ -13,17 +13,17 @@ const LoginContainer = styled.div`
     align-items:center;
 `
 
-const Login = (props) => {
+const SignUp = (props) => {
   return <Fragment>
       <LoginContainer>
-          <Card title="Login">
-            <LoginForm/>
-            <NavLink to="/ReactShop/SignUp">
-              SignUp
+          <Card title="SignUp">
+            <SignUpForm/>
+            <NavLink to="/ReactShop/Login">
+              Login
             </NavLink>
           </Card>
       </LoginContainer>
   </Fragment>;
 };
 
-export default Login;
+export default SignUp;

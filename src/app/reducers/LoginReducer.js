@@ -1,13 +1,11 @@
 export const LoginActions = {
   EMAIL: 0,
-  PASSWORD: 1,
-  LOADING: 2
+  PASSWORD: 1
 };
 
 export const LoginInitialState = {
-  email: { value: "test@test.com", isValid: false, touched: false },
-  password: { value: "Pass@123", isValid: false, touched: false },
-  loading:false
+  email: { value: "", isValid: false, touched: false },
+  password: { value: "", isValid: false, touched: false }
 };
 
 export const LoginReducer = (state, action) => {
@@ -39,11 +37,6 @@ export const LoginReducer = (state, action) => {
             : false,
         },
       };
-    case LoginActions.LOADING:
-        return {
-            ...state,
-            loading:action.payload
-        }
     default:
       return {...LoginInitialState};
   }

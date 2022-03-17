@@ -1,39 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCartState=[
-    {
-        product:{
-            id:Math.random().toString().substring(2),
-            name:"React Router",
-            url:"https://miro.medium.com/max/1400/1*sX8rBJBol5dBp5WIJQrYyw.png",
-            price:10
-        },
-        quantity:1
-    }
-]
+
 
 const CartSlice = createSlice({
     name:"cart",
-    initialState:initialCartState,
+    initialState:[],
     reducers:{
         addProduct(state,actions){
-            const idx=state.findIndex(item=>item.product.id===actions.payload.product.id);
+            let idx = state.findIndex(item=>item.product.id===actions.payload.id)
             if(idx>=0){
+                state[idx].product=actions.payload;
                 state[idx].quantity+=1;
             }else{
-                state.push({product:actions.payload.product,quantity:1});
+                state.push({product:actions.payload,quantity:1});
+            }
+        },
+        updateProduct(state,actions){
+            let idx = state.findIndex(item=>item.product.id===actions.payload.product.id)
+            if(idx>=0){
+                state[idx].product=actions.payload.product;
+                state[idx].quantity=actions.payload.quantity;
+            }else{
+                state.push({product:actions.payload,quantity:1});
             }
         },
         deleteProduct(state,actions){
-            const idx=state.findIndex(item=>item.product.id===actions.payload.product.id);
-            if(idx>=0){
-                state[idx].quantity-=1;
-            }else{
-                state=state.filter(item=>item.product.id!==actions.payload.product.id)
-            }
+            return state.filter(item=>item.product.id!==actions.payload.id)
         }
     }
 });
+
+export const SaveCart = async (cart)=>{
+    return async (dispatch)=>{
+        setTimeout(()=>{
+
+        },1000)
+    }
+}
+
+export const fetchCart = async ()=>{
+    return async (dispatch)=>{
+        setTimeout(()=>{
+
+        },1000)
+    }
+}
+
 
 export const CartActions = CartSlice.actions;
 export default CartSlice.reducer;
