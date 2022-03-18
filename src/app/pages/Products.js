@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Product from "../widgets/Product";
-import { Fragment, useEffect } from "react";
-import { saveProducts } from "./../store/Actions/ProductHttpActions";
+import { Fragment } from "react";
+
 
 
 let ProductContainer = styled.div`
@@ -22,13 +22,6 @@ const MsgContainer = styled.div`
 
 const Products = (props) => {
   const products = useSelector((state) => state.product);
-  const dispatch = useDispatch();
-
-  useEffect(()=>{
-    if(!products.saved){
-        dispatch(saveProducts(products.productItems));
-    }
-  },[products,dispatch])
 
   return (
     <Fragment>

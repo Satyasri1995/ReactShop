@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import generaterandom from "generaterandom";
 import Order from "../../models/Order";
 
 const initOrder={...new Order()}
@@ -11,12 +12,21 @@ const OrderSlice=createSlice({
             let order={
                 product:actions.payload.product,
                 quantity:actions.payload.quantity,
-                id:Math.random().toString().substring(2)
+                id:generaterandom.string(10)
             }
-            state.push(order);
+            state.orderItems.push(order);
+            state.saved=false;
         },
         cancelOrder(state,actions){
-            return state.filter(item=>item.id!==actions.payload.id);
+            state.orderItems=state.orderItems.filter(item=>item.id!==actions.payload.id);
+            state.saved=false;
+        },
+        replaceOrders(state,actions){
+            state.orderItems=actions.payload;
+            state.saved=true;
+        },
+        status(state,actions){
+            state.saved=actions.payload;
         }
     }
 });

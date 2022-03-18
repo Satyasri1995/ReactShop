@@ -23,10 +23,10 @@ const Orders = (props) => {
 
   return (
     <Fragment>
-      {orders.length ? (
+      {orders.orderItems.length ? (
         <div className="p-d-flex p-flex-row p-jc-center">
           <OrderContainer>
-            {orders.map((cartItem, index) => {
+            {orders.orderItems.map((cartItem, index) => {
               return <OrderItem item={cartItem} key={index} />;
             })}
           </OrderContainer>

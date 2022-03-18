@@ -50,6 +50,7 @@ const StyledLogout = styled.a`
 const NavBar = (props) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
   const { url } = useRouteMatch();
   const history = useHistory();
 
@@ -60,7 +61,7 @@ const NavBar = (props) => {
   }, [isAuthenticated, history]);
 
   const totalCartItems = useSelector((state) =>
-    state.cart.reduce((total, item) => {
+    state.cart.cartItems.reduce((total, item) => {
       return (total += item.quantity);
     }, 0)
   );
@@ -76,15 +77,17 @@ const NavBar = (props) => {
     });
   };
 
-  const totalOrderedItems = useSelector((state) => state.order.length);
+  const totalOrderedItems = useSelector(
+    (state) => state.order.orderItems.length
+  );
 
   return (
     <StyledHeader>
       <Title to={`${url}`}>ReactShop</Title>
       <nav>
-        <StyledNavLink to={`${url}/product`}>
-          Add/Edit Products
-        </StyledNavLink>
+        {isAdmin && (
+          <StyledNavLink to={`${url}/product`}>Add/Edit Products</StyledNavLink>
+        )}
         <StyledNavLink to={`${url}/products`}>Products</StyledNavLink>
         <StyledNavLink to={`${url}/cart`}>
           <i

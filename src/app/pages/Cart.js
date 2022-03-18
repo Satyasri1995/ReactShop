@@ -23,10 +23,10 @@ const Cart = (props) => {
 
   return (
     <Fragment>
-      {cart.length ? (
+      {cart.cartItems.length ? (
         <div className="p-d-flex p-flex-row p-jc-center">
           <CartContainer>
-            {cart.map((cartItem, index) => {
+            {cart.cartItems.map((cartItem, index) => {
               return <CartItem item={cartItem} key={index} />;
             })}
           </CartContainer>

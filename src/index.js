@@ -12,6 +12,9 @@ import "primeflex/primeflex.css";
 import { BrowserRouter } from "react-router-dom";
 import store from "./app/store/index";
 import { Provider } from "react-redux";
+import axios from "axios";
+
+axios.defaults.withCredentials=true;
 
 ReactDOM.render(
   <BrowserRouter>

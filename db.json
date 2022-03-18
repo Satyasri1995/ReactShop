@@ -5,7 +5,13 @@
       "username": "satyasri.125110044@gmail.com",
       "password": "Test@123",
       "admin": true,
-      "carts": [],
+      "cart": [
+        {
+          "product": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH",
+          "id": "hADkpIsvjl",
+          "quantity": 1
+        }
+      ],
       "orders": []
     }
   ],
@@ -13,13 +19,13 @@
     {
       "name": "Redux",
       "url": "https://redux.js.org/img/redux-logo-landscape.png",
-      "price": "250",
+      "price": "300",
       "id": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH"
     },
     {
       "name": "ReactJS",
       "url": "https://www.freecodecamp.org/news/content/images/2021/06/Ekran-Resmi-2019-11-18-18.08.13.png",
-      "price": "165",
+      "price": "167",
       "id": "buJCtCDIRyJXJJneiiQmEAyHihfzezLBARfMUllSKfdVyJyChA"
     },
     {

@@ -11,7 +11,7 @@ const ProductSlice = createSlice({
         addProduct(state,actions){
             const product={
                 ...actions.payload,
-                id:generaterandom.string(50)
+                id:generaterandom.string(10)
             }
             state.productItems.push(product);
             state.saved=false;

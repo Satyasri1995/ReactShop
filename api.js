@@ -4,12 +4,13 @@ const fs = require("fs");
 const session = require("express-session");
 const random = require("generaterandom");
 const cors = require("cors");
+const helmet = require("helmet")
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -18,8 +19,13 @@ app.use(
     secret: "mysecret",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: false,
+      maxAge: 60 * 60 * 1000
+    },
   })
 );
+app.use(helmet());
 
 app.use("/signin", (req, res, next) => {
   const db = JSON.parse(fs.readFileSync("./db.json").toString());
@@ -36,7 +42,7 @@ app.use("/signin", (req, res, next) => {
     req.session.userId = user.id;
     res.json({
       status: true,
-      data: { id: user.id, username: user.username },
+      data: { id: user.id, username: user.username ,admin:user.admin},
     });
   }
 });
@@ -52,7 +58,7 @@ app.use("/signup", (req, res, next) => {
     });
   }
   db.users.push({
-    id: random.alphanumeric(50),
+    id: random.alphanumeric(10),
     username: username,
     password: password,
     admin: admin,
@@ -86,7 +92,7 @@ app.get("/cart", (req, res, next) => {
   const db = JSON.parse(fs.readFileSync("./db.json").toString());
   const user = db.users.find((user) => user.id === req.session.userId);
   const usercart = user.cart.map((cart) => {
-    cart.product = db.products.find((product) => product.id === cart.product.id);
+    cart.product = db.products.find((product) => product.id === cart.product);
     return cart;
   });
   return res.json({
@@ -113,7 +119,7 @@ app.get("/orders", (req, res, next) => {
   const db = JSON.parse(fs.readFileSync("./db.json").toString());
   const user = db.users.find((user) => user.id === req.session.userId);
   const userorders = user.orders.map((order) => {
-    order.product = db.products.find((product) => product.id === order.product.id);
+    order.product = db.products.find((product) => product.id === order.product);
     return order;
   });
   return res.json({
@@ -135,4 +141,6 @@ app.post("/orders", (req, res, next) => {
     data: "Orders Updated",
   });
 });
-app.listen(4000);
+app.listen(4000,()=>{
+  console.log("server started")
+});
