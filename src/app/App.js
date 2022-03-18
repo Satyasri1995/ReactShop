@@ -7,12 +7,21 @@ import Login from './pages/Login';
 import Shop from './pages/Shop';
 import { useSelector } from 'react-redux';
 import SignUp from './pages/SignUp';
+import { useHistory } from 'react-router-dom';
 
 function App() {
 
   const toastRef = useRef(null);
   const toast = useSelector(state=>state.ui.toast);
   const clearToast = useSelector(state=>state.ui.clearToast);
+  const redirect = useSelector(state=>state.ui.redirect);
+  const history = useHistory();
+
+  useEffect(()=>{
+    if(redirect){
+      history.push(redirect);
+    }
+  },[redirect,history])
 
   useEffect(()=>{
     toastRef.current.show({...toast});

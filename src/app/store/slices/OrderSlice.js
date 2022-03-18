@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Order from "../../models/Order";
 
+const initOrder={...new Order()}
 
 const OrderSlice=createSlice({
     name:"order",
-    initialState:[],
+    initialState:initOrder,
     reducers:{
         placeOrder(state,actions){
             let order={

@@ -1,21 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Products from "../../models/Products";
+import generaterandom from "generaterandom";
+
+const initProducts={...new Products()};
 
 const ProductSlice = createSlice({
     name:"products",
-    initialState:[],
+    initialState:{...initProducts},
     reducers:{
         addProduct(state,actions){
-            state.push(actions.payload);
+            const product={
+                ...actions.payload,
+                id:generaterandom.string(50)
+            }
+            state.productItems.push(product);
+            state.saved=false;
         },
         deleteProduct(state,actions){
-            state=state.filter(product=>product.id!==actions.payload);
+            state.productItems.filter(product=>product.id!==actions.payload);
+            state.saved=false;
         },
         updateProduct(state,actions){
-            const idx=state.findIndex(product=>product.id===actions.payload.id);
-            state[idx]=actions.payload;
+            const idx=state.productItems.findIndex(product=>product.id===actions.payload.id);
+            state.productItems[idx]=actions.payload;
+            state.saved=false;
         },
         replaceProducts(state,actions){
-            return actions.payload;
+            state.productItems=actions.payload;
+            state.saved=true;
+        },
+        status(state,actions){
+            state.saved=actions.payload;
+        },
+        editProduct(state,actions){
+            state.editProduct=actions.payload;
         }
     }
 });

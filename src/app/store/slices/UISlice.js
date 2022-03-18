@@ -15,6 +15,9 @@ const UISlice = createSlice({
         },
         updateLoading(state,actions){
             state.loading=actions.payload;
+        },
+        redirect(state,actions){
+            state.redirect=actions.payload;
         }
     }
 });

@@ -1,31 +1,32 @@
 {
-    "users":[
-        
-    ],
-    "products":[
-        {
-            "id":"1",
-            "name":"React",
-            "url":"https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/0e6ff/React.jpg",
-            "price":100
-        },
-        {
-            "id":"2",
-            "name":"PrimeReact",
-            "url":"https://www.rezourze.com/rz-storage/2020/09/PrimeReact-UI-Component-Libraries-Frameworks.jpg",
-            "price":20
-        },
-        {
-            "id":"3",
-            "name":"React Router",
-            "url":"https://miro.medium.com/max/1400/1*sX8rBJBol5dBp5WIJQrYyw.png",
-            "price":10
-        }
-    ],
-    "carts":[
-        
-    ],
-    "orders":[
-        
-    ]
+  "users": [
+    {
+      "id": "GhDBqxysh1kf8fNavP1pxALDeiyJ9h5Ff8NrzNQXMROrifyy0Y",
+      "username": "satyasri.125110044@gmail.com",
+      "password": "Test@123",
+      "admin": true,
+      "carts": [],
+      "orders": []
+    }
+  ],
+  "products": [
+    {
+      "name": "Redux",
+      "url": "https://redux.js.org/img/redux-logo-landscape.png",
+      "price": "250",
+      "id": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH"
+    },
+    {
+      "name": "ReactJS",
+      "url": "https://www.freecodecamp.org/news/content/images/2021/06/Ekran-Resmi-2019-11-18-18.08.13.png",
+      "price": "165",
+      "id": "buJCtCDIRyJXJJneiiQmEAyHihfzezLBARfMUllSKfdVyJyChA"
+    },
+    {
+      "name": "React",
+      "url": "https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg",
+      "price": "200",
+      "id": "yuqafnYTnQLsbuszxRIZMDNAYvgKhcKXQlOESqNqxtskChHUoi"
+    }
+  ]
 }

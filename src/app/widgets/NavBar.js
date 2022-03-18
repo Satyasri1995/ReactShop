@@ -2,7 +2,11 @@ import { useRouteMatch } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Badge } from "primereact/badge";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { confirmPopup } from "primereact/confirmpopup";
+import { AuthActions } from "../store/slices/AuthSlice";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -35,8 +39,25 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const StyledLogout = styled.a`
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: black;
+  }
+`;
+
 const NavBar = (props) => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const { url } = useRouteMatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.replace("/");
+    }
+  }, [isAuthenticated, history]);
 
   const totalCartItems = useSelector((state) =>
     state.cart.reduce((total, item) => {
@@ -44,12 +65,26 @@ const NavBar = (props) => {
     }, 0)
   );
 
+  const confirm = (event) => {
+    confirmPopup({
+      target: event.currentTarget,
+      message: "Are you sure you want to proceed?",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        dispatch(AuthActions.loggedOut());
+      },
+    });
+  };
+
   const totalOrderedItems = useSelector((state) => state.order.length);
 
   return (
     <StyledHeader>
       <Title to={`${url}`}>ReactShop</Title>
       <nav>
+        <StyledNavLink to={`${url}/product`}>
+          Add/Edit Products
+        </StyledNavLink>
         <StyledNavLink to={`${url}/products`}>Products</StyledNavLink>
         <StyledNavLink to={`${url}/cart`}>
           <i
@@ -67,8 +102,11 @@ const NavBar = (props) => {
           >
             <Badge value={totalOrderedItems} />
           </i>
-          &nbsp;Cart
+          &nbsp;Orders
         </StyledNavLink>
+        <StyledLogout className="p-mr-4" onClick={confirm}>
+          <i className="pi pi-power-off" style={{ fontSize: "20px" }}></i>
+        </StyledLogout>
       </nav>
     </StyledHeader>
   );

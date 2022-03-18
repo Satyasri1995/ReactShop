@@ -1,18 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cart from "../../models/Cart";
 
-
+const initCart={...new Cart()}
 
 const CartSlice = createSlice({
     name:"cart",
-    initialState:[],
+    initialState:initCart,
     reducers:{
         addProduct(state,actions){
             let idx = state.findIndex(item=>item.product.id===actions.payload.id)
             if(idx>=0){
                 state[idx].product=actions.payload;
                 state[idx].quantity+=1;
-            }else{
-                state.push({product:actions.payload,quantity:1});
             }
         },
         updateProduct(state,actions){
@@ -20,8 +19,6 @@ const CartSlice = createSlice({
             if(idx>=0){
                 state[idx].product=actions.payload.product;
                 state[idx].quantity=actions.payload.quantity;
-            }else{
-                state.push({product:actions.payload,quantity:1});
             }
         },
         deleteProduct(state,actions){

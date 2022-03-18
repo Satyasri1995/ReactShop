@@ -13,26 +13,25 @@ import {
   SignUpInitialState,
 } from "../reducers/SignUpReducer";
 
+
 const SignUpForm = (props) => {
+
+  
+
   const dispatch = useDispatch();
-
   const [show, setShow] = useState(false);
-
-  const toogleShow = (e)=>{
-    setShow(value=>!value)
-  }
-
   const loading = useSelector((state) => state.ui.loading);
-
   const [signupState, dispatchSignUp] = useReducer(
     SignUpReducer,
     SignUpInitialState
   );
 
+  const toogleShow = (e)=>{
+    setShow(value=>!value)
+  }
   const mailDispatch = (e) => {
     dispatchSignUp({ type: SignUpActions.EMAIL, payload: e.target.value });
   };
-
   const passwordDispatch = (e) => {
     dispatchSignUp({ type: SignUpActions.PASSWORD, payload: e.target.value });
   };
@@ -48,12 +47,12 @@ const SignUpForm = (props) => {
       payload: e.checked,
     });
   };
-
-  const loginHandler = (e) => {
+  const signUpHandler = (e) => {
     e.preventDefault();
     const data = {
       username: e.target.username.value,
       password: e.target.password.value,
+      admin:e.target.admin.checked
     };
     dispatch(Sign_Up(data));
   };
@@ -63,7 +62,7 @@ const SignUpForm = (props) => {
       <form
         className="p-d-flex p-flex-column"
         style={{ width: "25rem" }}
-        onSubmit={loginHandler}
+        onSubmit={signUpHandler}
       >
         <InputWrapper label="User Name">
           <InputText
@@ -144,6 +143,7 @@ const SignUpForm = (props) => {
           <Checkbox
             inputId="binary"
             checked={signupState.isAdmin.value}
+            name="admin"
             onChange={isAdminDispatch}
           />
           <label htmlFor="binary" className="p-ml-2">
