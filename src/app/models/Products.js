@@ -6,4 +6,4 @@ class Products{
     }
 }
 
-module.exports=Products;
+export default Products;

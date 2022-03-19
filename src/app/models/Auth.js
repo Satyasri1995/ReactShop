@@ -5,4 +5,5 @@ class Auth {
     this.username = data ? data.username : "";
   }
 }
-module.exports = Auth;
+
+export default Auth;

@@ -1,4 +1,5 @@
-const Toast = require("./Toast");
+import Toast from "./Toast";
+
 
 class UI{
     constructor(data){
@@ -8,4 +9,4 @@ class UI{
         this.redirect=data?data.redirect:"";
     }
 }
-module.exports=UI;
+export default UI;
