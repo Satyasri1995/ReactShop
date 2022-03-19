@@ -4,9 +4,9 @@ import { Redirect } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom";
-import { SaveCart } from "../store/Actions/CartHttpActions";
-import { SaveOrders } from "../store/Actions/OrderHttpActions";
-import { saveProducts } from "../store/Actions/ProductHttpActions";
+import { fetchCart, SaveCart } from "../store/Actions/CartHttpActions";
+import { fetchOrders, SaveOrders } from "../store/Actions/OrderHttpActions";
+import { fetchProducts, saveProducts } from "../store/Actions/ProductHttpActions";
 import NavBar from "../widgets/NavBar";
 import Cart from "./Cart";
 import EditProduct from "./EditProduct";
@@ -22,6 +22,13 @@ const Shop = (props) => {
   const orders = useSelector((state) => state.order);
   const products = useSelector(state=>state.product);
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCart());
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!orders.saved) {

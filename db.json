@@ -1,18 +1,44 @@
 {
   "users": [
     {
-      "id": "GhDBqxysh1kf8fNavP1pxALDeiyJ9h5Ff8NrzNQXMROrifyy0Y",
+      "id": "isM2fy0NeF",
       "username": "satyasri.125110044@gmail.com",
       "password": "Test@123",
       "admin": true,
       "cart": [
         {
           "product": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH",
-          "id": "hADkpIsvjl",
+          "id": "LnajsiBLpL",
+          "quantity": 2
+        }
+      ],
+      "orders": [
+        {
+          "product": "yuqafnYTnQLsbuszxRIZMDNAYvgKhcKXQlOESqNqxtskChHUoi",
+          "id": "tdYOUcSxhV",
+          "quantity": 7
+        }
+      ]
+    },
+    {
+      "id": "ve5Xbw2eIQ",
+      "username": "satyasri.1251100444@gmail.com",
+      "password": "Test@123",
+      "admin": false,
+      "cart": [
+        {
+          "product": "yuqafnYTnQLsbuszxRIZMDNAYvgKhcKXQlOESqNqxtskChHUoi",
+          "id": "EmOtYOqSRb",
           "quantity": 1
         }
       ],
-      "orders": []
+      "orders": [
+        {
+          "product": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH",
+          "id": "pVWlirCEsc",
+          "quantity": 1
+        }
+      ]
     }
   ],
   "products": [
@@ -33,6 +59,12 @@
       "url": "https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg",
       "price": "200",
       "id": "yuqafnYTnQLsbuszxRIZMDNAYvgKhcKXQlOESqNqxtskChHUoi"
+    },
+    {
+      "name": "React Router",
+      "url": "https://miro.medium.com/max/1400/0*ngqSFJgQ1fkpW_1Y",
+      "price": "55",
+      "id": "tYdCkSYXbG"
     }
   ]
 }

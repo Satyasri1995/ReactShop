@@ -4,7 +4,7 @@ const fs = require("fs");
 const session = require("express-session");
 const random = require("generaterandom");
 const cors = require("cors");
-const helmet = require("helmet")
+const helmet = require("helmet");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -21,7 +21,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: false,
-      maxAge: 60 * 60 * 1000
+      maxAge: 60 * 60 * 1000,
     },
   })
 );
@@ -42,7 +42,7 @@ app.use("/signin", (req, res, next) => {
     req.session.userId = user.id;
     res.json({
       status: true,
-      data: { id: user.id, username: user.username ,admin:user.admin},
+      data: { id: user.id, username: user.username, admin: user.admin },
     });
   }
 });
@@ -62,6 +62,8 @@ app.use("/signup", (req, res, next) => {
     username: username,
     password: password,
     admin: admin,
+    cart:[],
+    orders:[]
   });
   fs.writeFileSync("./db.json", JSON.stringify(db));
   return res.json({
@@ -132,7 +134,11 @@ app.post("/orders", (req, res, next) => {
   const db = JSON.parse(fs.readFileSync("./db.json").toString());
   const idx = db.users.findIndex((user) => user.id === req.session.userId);
   const userorders = req.body.map((order) => {
-    return { product: order.product.id, id: order.id, quantity: order.quantity };
+    return {
+      product: order.product.id,
+      id: order.id,
+      quantity: order.quantity,
+    };
   });
   db.users[idx].orders = userorders;
   fs.writeFileSync("./db.json", JSON.stringify(db));
@@ -141,6 +147,39 @@ app.post("/orders", (req, res, next) => {
     data: "Orders Updated",
   });
 });
-app.listen(4000,()=>{
-  console.log("server started")
+app.listen(4000, () => {
+  console.log("server started");
+  if(fs.existsSync("./db.json")){
+    return;
+  }
+  fs.writeFileSync(
+    "./db.json",
+    `
+  {
+    "users": [
+      
+    ],
+    "products": [
+      {
+        "name": "Redux",
+        "url": "https://redux.js.org/img/redux-logo-landscape.png",
+        "price": "300",
+        "id": "cXNYXzwTRaIcroNPkrBMfnUyWWfdORDXyQdrfrkufCTiAjLrlH"
+      },
+      {
+        "name": "ReactJS",
+        "url": "https://www.freecodecamp.org/news/content/images/2021/06/Ekran-Resmi-2019-11-18-18.08.13.png",
+        "price": "167",
+        "id": "buJCtCDIRyJXJJneiiQmEAyHihfzezLBARfMUllSKfdVyJyChA"
+      },
+      {
+        "name": "React",
+        "url": "https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg",
+        "price": "200",
+        "id": "yuqafnYTnQLsbuszxRIZMDNAYvgKhcKXQlOESqNqxtskChHUoi"
+      }
+    ]
+  }
+  `
+  );
 });
